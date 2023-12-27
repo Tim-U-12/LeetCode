@@ -2,15 +2,19 @@ import unittest
 
 class testClimbStairs(unittest.TestCase):
     def testBase(self):
-        self.assertEqual(climbStairs(0), 0)
-        self.assertEqual(climbStairs(1), 1)
-        self.assertEqual(climbStairs(2), 2)
+        self.assertEqual(bottomUpClimbStairs(0), 0)
+        self.assertEqual(bottomUpClimbStairs(1), 1)
+        self.assertEqual(bottomUpClimbStairs(2), 2)
     
     def testGeneric(self):
-        self.assertEqual(climbStairs(3), 3)
+        self.assertEqual(bottomUpClimbStairs(3), 3)
+
+    def testTopDown(self):
+        self.assertEqual(topDownClimbStairs(3), 3)
+
     
 
-def climbStairs(n:int) -> int:
+def bottomUpClimbStairs(n:int) -> int:
     match n:
         case 0:
             return 0
@@ -27,6 +31,16 @@ def climbStairs(n:int) -> int:
                 result[i] = result[i - 2] + result[i - 1]
 
             return result[n]
+
+def topDownClimbStairs(n:int) -> int:
+    if n == 0:
+        return 1
+    if n == 1:
+        return 1
+    if n < 0:
+        return 0
+    
+    return topDownClimbStairs(n - 1) + topDownClimbStairs(n - 2)
 
 if __name__ == "__main__":
     unittest.main()
