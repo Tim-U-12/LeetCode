@@ -9,7 +9,11 @@ class TestTribonacci(unittest.TestCase):
         self.assertEqual(bottomUpTribonacci(25), 1389537)
 
     def testTopDown(self):
-        pass
+        self.assertEqual(topDownTribonacci(0), 0)
+        self.assertEqual(topDownTribonacci(1), 1)
+        self.assertEqual(topDownTribonacci(3), 2)
+        self.assertEqual(topDownTribonacci(4), 4)
+        self.assertEqual(topDownTribonacci(25), 1389537)
 
 def bottomUpTribonacci(n: int) -> int:
     match n:
@@ -27,6 +31,15 @@ def bottomUpTribonacci(n: int) -> int:
                 first_previous, second_previous, third_previous = second_previous, third_previous, tribonacci_number
             
             return tribonacci_number
+
+def topDownTribonacci(n: int) -> int:
+    memo = {0: 0, 1: 1, 2: 1}
+
+    def rec(n: int) -> int:
+        if n in memo:
+            return memo[n]
+        return rec(n - 1) + rec(n - 2) + rec(n - 3)
+    return rec(n)
 
 if __name__ == "__main__":
     unittest.main()
