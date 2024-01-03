@@ -22,6 +22,17 @@ def BottomUpMinCostClimbingStairs(cost: list[int]) -> int:
     
     return min(first, second)
 
+def TopDownMinCostClimbingStairs(cost: list[int]) -> int:
+    n = len(cost)
+
+    def rec(n: int) -> int:
+        if n == 0:
+            return cost[0]
+
+        if n == 1:
+            return cost[1]
+
+        return min(rec(n-1), rec(n-2))
 
 if __name__ == "__main__":
     unittest.main()
