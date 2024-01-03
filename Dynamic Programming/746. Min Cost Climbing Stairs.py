@@ -11,16 +11,16 @@ class TestMinCostClimbingStairs(unittest.TestCase):
 def BottomUpMinCostClimbingStairs(cost: list[int]) -> int:
     n = len(cost)
 
-    if n == 2:
+    if n <= 2:
         return min(cost)
 
-    cache = [float('inf') for _ in range(n)]
-    cache[0], cache[1] = cost[0], cost[1]
+    first, second = cost[0], cost[1]
 
     for i in range(2, n):
-        cache[i] = min(cost[i] + cache[i-1], cost[i] + cache[i-2])
+        current = cost[i] + min(first, second)
+        first, second = second, current
     
-    return min(cache[-1], cache[-2])
+    return min(first, second)
 
 
 if __name__ == "__main__":
