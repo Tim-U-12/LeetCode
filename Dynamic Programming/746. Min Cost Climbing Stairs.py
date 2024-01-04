@@ -6,7 +6,8 @@ class TestMinCostClimbingStairs(unittest.TestCase):
         self.assertEqual(BottomUpMinCostClimbingStairs([1,100,1,1,1,100,1,1,100,1]), 6)
 
     def testTopDownMinCostClimbingStairs(self):
-        pass
+        self.assertEqual(TopDownMinCostClimbingStairs([10,15,20]), 15)
+        self.assertEqual(TopDownMinCostClimbingStairs([1,100,1,1,1,100,1,1,100,1]), 6)
 
 def BottomUpMinCostClimbingStairs(cost: list[int]) -> int:
     n = len(cost)
@@ -23,16 +24,13 @@ def BottomUpMinCostClimbingStairs(cost: list[int]) -> int:
     return min(first, second)
 
 def TopDownMinCostClimbingStairs(cost: list[int]) -> int:
-    n = len(cost)
-
     def rec(n: int) -> int:
-        if n == 0:
-            return cost[0]
-
-        if n == 1:
-            return cost[1]
-
-        return min(rec(n-1), rec(n-2))
+        if n < 2:
+            return cost[n]
+        
+        return cost[n] + min(rec(n - 1), rec(n - 2))
+    length = len(cost)
+    return min(rec(length - 1), rec(length - 2))
 
 if __name__ == "__main__":
     unittest.main()
