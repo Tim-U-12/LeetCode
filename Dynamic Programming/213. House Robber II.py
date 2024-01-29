@@ -5,7 +5,7 @@ class TestRob(unittest.TestCase):
         self.assertEqual(rob([2,3,2]), 3)
         self.assertEqual(rob([1,2,3,1]), 4)
         self.assertEqual(rob([1,2,3]), 3)
-
+        self.assertEqual(rob([6,6,4,8,4,3,3,10]), 27)
 
 def rob(nums: list[int]) -> int:
     n = len(nums)
@@ -21,7 +21,7 @@ def rob(nums: list[int]) -> int:
     temp_two = nums[1]
     potential_sol_two = max(nums[1], nums[2])
     for i in range(3, n):
-        temp, potential_sol_two = potential_sol_two, max(temp_two + nums[i], potential_sol_two)
+        temp_two, potential_sol_two = potential_sol_two, max(temp_two + nums[i], potential_sol_two)
     
     return max(potential_sol_two, potential_sol_one)
 
