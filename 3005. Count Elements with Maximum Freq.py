@@ -7,20 +7,26 @@ class TestSolution(unittest.TestCase):
 
 def maxFrequencyElements(nums: list[int]) -> int:
     myDict = {}
-    maxFreq = 1
+    result = []
+    maxFreq = 0
+
     for num in nums:
         if num in myDict:
             myDict[num] += 1
-            maxFreq = max(maxFreq, myDict[num])
+            if myDict[num] == maxFreq:
+                result.append(num)
+            elif myDict[num] > maxFreq:
+                result = [num]
+                maxFreq = myDict[num]
         else:
-            myDict[num] = 1 
-
-    result = 0
-    for key in myDict:
-        if myDict[key] == maxFreq:
-            result += maxFreq
+            myDict[num] = 1
+            if myDict[num] == maxFreq:
+                result.append(num)
+            elif myDict[num] > maxFreq:
+                result = [num]
+                maxFreq = myDict[num]
         
-    return result
+    return len(result) * maxFreq
 
 if __name__ == "__main__":
     unittest.main()
