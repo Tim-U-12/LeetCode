@@ -6,7 +6,7 @@ class TestSolution(unittest.TestCase):
         self.assertEqual(customSortString("bcafg", "abcd"), "bcad")
 
 def customSortString(order: str, s: str) -> str:
-    pass
+    print("Hello World")
 
 
 if __name__ == "__main__":
