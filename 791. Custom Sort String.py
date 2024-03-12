@@ -22,7 +22,6 @@ def customSortString(order: str, s: str) -> str:
     for key in myDict:
         sol += (myDict[key] * key)
     
-    print(sol)
     return sol
 
 
