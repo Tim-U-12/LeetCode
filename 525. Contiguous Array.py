@@ -6,25 +6,18 @@ class TestSolution(unittest.TestCase):
         self.assertEqual(findMaxLength([0,1, 0]), 2)
 
 def findMaxLength(nums: list[int]) -> int:
-    def helper(subarray: list[int]) -> bool:
-        zeroes = 0
+    count_index = {0: -1}
+    max_length = count = 0
 
-        for num in subarray:
-            if num == 0:
-                zeroes += 1
-        
-        return len(subarray) - zeroes == zeroes
+    for i, num in enumerate(nums):
+        count += 1 if num == 1 else -1
 
-    n = len(nums)
+        if count in count_index:
+            max_length = max(max_length, i - count_index[count])
+        else:
+            count_index[count] = i
 
-    for i in range(n - 1, -1, -1):
-        for j in range(n - i):
-            temp = nums[j:j + i + 1]
+    return max_length
 
-            if helper(temp):
-                return len(temp)
-    
-    return 0
-    
 if __name__ == "__main__":
     unittest.main()
