@@ -6,7 +6,12 @@ class ListNode:
         self.next = next
 
 def reorderList(head) -> None:
-    pass
+    pointer = head
+    nodes = []
+
+    while pointer:
+        nodes.append(pointer)
+        pointer = pointer.next
 
 class TestSolution(unittest.TestCase):
     def test_sol(self):
